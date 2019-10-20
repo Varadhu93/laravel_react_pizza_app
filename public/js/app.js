@@ -50553,7 +50553,7 @@ var currentlyProcessingQueue;
   didWarnUpdateInsideUpdate = false;
   currentlyProcessingQueue = null;
 
-  
+
 }
 
 function createUpdateQueue(baseState) {
@@ -54765,7 +54765,7 @@ function insertNonHydratedInstance(returnFiber, fiber) {
               break;
 
             case SuspenseComponent:
-              
+
               break;
           }
 
@@ -69153,7 +69153,7 @@ if (document.getElementById('example')) {
 
 /***/ "./resources/js/components/Index.js":
 /*!******************************************!*\
-  !*** ./resources/js/components/Index.js ***!
+  !*** ./resources/js/components/App.js ***!
   \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderPizzaTable extends Migration
+class CreateOrderPizzasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateOrderPizzaTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::create('order_pizzas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedTinyInteger('price');
             $table->unsignedInteger('quantity');
             $table->timestamps();
         });
@@ -27,8 +28,6 @@ class CreateOrderPizzaTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('order_pizzas');
     }
 }

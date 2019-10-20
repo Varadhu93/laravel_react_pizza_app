@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
-
-
 /*Route::get('/post/{id}/{name}', function($id, $name){
 
     return "This is post number".$id.$name;
@@ -33,12 +27,19 @@ Route::get('admin/posts/example', array('as'=>'admin.home', function(){
 
 //Route::resource('post', 'PostController');
 
-Route::get('/contact', 'PostController@contact');
-Route::get('post/{id}', 'PostController@show_post');
-Route::get('/test', 'TestController@index');
+//Route::get('/contact', 'PostController@contact');
+//Route::get('post/{id}', 'PostController@show_post');
+//Route::get('/test', 'TestController@index');
 
-Route::get('/pizza', 'PizzaController@index');
+/*Route::get('/', function(){
+
+    return view('welcome');
+});*/
+
+/*Route::get('/pizza', 'PizzaController@index');
 Route::get('/pizza/{id}', 'PizzaController@show');
 Route::post('/pizza', 'PizzaController@store');
 Route::put('/pizza/{id}', 'PizzaController@update');
-Route::delete('/pizza/{id}', 'PizzaController@destroy');
+Route::delete('/pizza/{id}', 'PizzaController@destroy');*/
+
+Route::view('/{path?}', 'app');

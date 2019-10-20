@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Varadhu's Pizza store</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -16,9 +16,5 @@
 <div id="app">
     <script src="{{ asset('js/app.js') }}"></script>
 </div>
-<div class="container">
-    @yield('content')
-</div>
-    @yield('footer')
 </body>
 </html>
