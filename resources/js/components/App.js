@@ -1,25 +1,20 @@
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Header from './Header'
-import NewProject from './NewProject'
-import ProjectsList from './ProjectsList'
-import SingleProject from './SingleProject'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { HashRouter, Route, Switch } from 'react-router-dom'
+import Header from './Header';
+import Pizza from "./Pizza";
 
 class App extends Component {
     render () {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <div>
                     <Header />
-                    <Switch>
-                       {/* <Route exact path='/' component={ProjectsList} />
-                        <Route path='/create' component={NewProject} />
-                        <Route path='/:id' component={SingleProject} />*/}
-                    </Switch>
+                    <Pizza />
                 </div>
-            </BrowserRouter>
+            </HashRouter>
         )
     }
 }

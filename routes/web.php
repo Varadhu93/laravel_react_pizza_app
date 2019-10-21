@@ -36,10 +36,16 @@ Route::get('admin/posts/example', array('as'=>'admin.home', function(){
     return view('welcome');
 });*/
 
-/*Route::get('/pizza', 'PizzaController@index');
-Route::get('/pizza/{id}', 'PizzaController@show');
+
+
+
+
+
+Route::get('/home', 'PizzaController@index');
+/*Route::get('/pizza/{id}', 'PizzaController@show');
 Route::post('/pizza', 'PizzaController@store');
 Route::put('/pizza/{id}', 'PizzaController@update');
 Route::delete('/pizza/{id}', 'PizzaController@destroy');*/
+
 
 Route::view('/{path?}', 'app');

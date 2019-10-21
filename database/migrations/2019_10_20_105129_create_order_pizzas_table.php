@@ -14,8 +14,8 @@ class CreateOrderPizzasTable extends Migration
     public function up()
     {
         Schema::create('order_pizzas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedTinyInteger('price');
+            $table->integer('pizza_id')->unsigned();
+            $table->foreign('pizza_id')->references('id')->on('pizza');
             $table->unsignedInteger('quantity');
             $table->timestamps();
         });

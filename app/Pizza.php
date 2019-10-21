@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pizza extends Model
 {
-    protected $fillable = ['id', 'pizza_name'];
+    protected $table = 'pizza';
+    protected $primaryKey = 'id';
+    //protected $fillable = ['id', 'pizza_name', 'description'];
 }
