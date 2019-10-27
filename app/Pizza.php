@@ -8,5 +8,4 @@ class Pizza extends Model
 {
     protected $table = 'pizza';
     protected $primaryKey = 'id';
-    //protected $fillable = ['id', 'pizza_name', 'description'];
 }

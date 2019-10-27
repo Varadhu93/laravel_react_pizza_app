@@ -23,7 +23,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        //return view('order.create');
     }
 
     /**
@@ -34,7 +34,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'contact'=>'required',
+            'address'=>'required',
+            'amount'=>'required'
+        ]);
+
+        $order = new Orders([
+            'name' => $request->get('name'),
+            'contact' => $request->get('contact'),
+            'address' => $request->get('address'),
+            'amount' => $request->get('amount'),
+        ]);
+        $order->save();
+        return redirect('/home')->with('success', 'Order saved!')->setStatusCode(201);
     }
 
     /**
