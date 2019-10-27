@@ -9,6 +9,7 @@ import {
     CLOSE_ADD_TO_CART_MODAL,
 } from './action-types/cart-actions'
 import axios from "axios";
+import React from "react";
 
 export const getAllPizzas = () => async dispatch => {
     const response = await axios.get('/home');
@@ -17,8 +18,15 @@ export const getAllPizzas = () => async dispatch => {
 
 export const addShipping = (data) =>
 
-    axios.post('/order', data).then(response => {
+    axios.post('/order', {
+        name: data.name,
+        contact: data.contact,
+        address: data.address,
+        amount: data.amount
+    }).then(response =>{
         console.log(response);
+    }).catch(error =>{
+        console.log(error);
     });
 
 

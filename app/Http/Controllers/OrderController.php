@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Orders;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return Orders::all();
     }
 
     /**
@@ -34,7 +35,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $request->validate([
             'name'=>'required',
             'contact'=>'required',
             'address'=>'required',
@@ -42,13 +43,16 @@ class OrderController extends Controller
         ]);
 
         $order = new Orders([
-            'name' => $request->get('name'),
-            'contact' => $request->get('contact'),
-            'address' => $request->get('address'),
-            'amount' => $request->get('amount'),
+            'name' => $request->input('name'),
+            'contact' => $request->input('contact'),
+            'address' => $request->input('address'),
+            'amount' => $request->input('amount')
         ]);
         $order->save();
-        return redirect('/home')->with('success', 'Order saved!')->setStatusCode(201);
+        return response()->json([
+            'order' => $order,
+            'message' => 'Success'
+        ], 200);
     }
 
     /**

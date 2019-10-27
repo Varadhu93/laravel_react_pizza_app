@@ -15,12 +15,12 @@ const initState = {
     total: 0,
     addToCartModalIsShowing: false,
     shipping: [],
-
+    redirect: false
 };
 const cartReducer = (state = initState, action) => {
 
     if (action.type === ADD_SHIPPING) {
-        return { ...state, shipping: action.payload}
+        return { ...state, shipping: action.payload, redirect: true}
     }
 
     if (action.type === GET_ALL_PIZZAS) {
