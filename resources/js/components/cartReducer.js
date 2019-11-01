@@ -43,7 +43,6 @@ const cartReducer = (state = initState, action) => {
         let value = parseFloat(addedItem.price.replace("$", ""));
         if (existed_item) {
             addedItem.quantity += 1;
-            console.log(addedItem.quantity)
             return {
                 ...state,
                 //total: state.total + addedItem.price

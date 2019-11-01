@@ -77097,7 +77097,6 @@ var cartReducer = function cartReducer() {
 
     if (existed_item) {
       addedItem.quantity += 1;
-      console.log(addedItem.quantity);
       return _objectSpread({}, state, {
         //total: state.total + addedItem.price
         addedItem: addedItem,
