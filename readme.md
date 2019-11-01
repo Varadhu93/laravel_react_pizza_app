@@ -1,72 +1,55 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Overview
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+To create a Pizza application which allows Users to order pizza from list of given pizzas. The App has been designed and created using Laravel + React.
 
-## About Laravel
+## Softwares Required
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
+- [XAMPP](https://www.apachefriends.org/download.html)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Creating a Laravel project
 
-## Learning Laravel
+`composer create-project  --prefer-dist  laravel/laravel pizza-app`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installing dependencies
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`npm install`
 
-## Laravel Sponsors
+## Creating controllers and Routes
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+` php artisan make:controller <controllername> --resource`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+## Database commands
 
-## Contributing
+* `php artisan make:migration create_table_name --table=<tablename>`
+* `php artisan migrate` - To run outstanding migrations
+* `php artisan migrate:rollback` - To rollback a migration
+* `php artisan migrate:refresh` - To rollback all migrations and execute all migrations
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Tables
 
-## Security Vulnerabilities
+`Pizza` - id, pizza_name, image, price, timestamp
+`Orders` -order_id, name, contact, address, amount, timestamp
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Sample Test data
 
-## License
+```
+INSERT INTO `pizza` (`id`, `pizza_name`, `image`, `price`, `created_at`, `updated_at`) VALUES (NULL, 'Neapolitan Pizza', 'https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-margherita-.jpg', '$5.99', NULL, NULL), (NULL, 'Chicago Pizza', 'https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-deepdish.jpg', '$6.99', NULL, NULL), (NULL, 'Sicilian Pizza', 'https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/rectangle.jpg', '$7.99', NULL, NULL), (NULL, 'Greek Pizza', 'https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/onions.jpg', '$8.99', NULL, NULL), (NULL, 'New York-Style Pizza', 'https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/flat.jpg', '$6.99', NULL, NULL), (NULL, 'California Pizza', 'https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-gourmet.jpg', '$7.99', NULL, NULL), (NULL, 'St. Louis Pizza', 'https://cdnimg.webstaurantstore.com/uploads/blog/2019/3/blog-types-pizza_in-blog-8.jpg', '$9.99', NULL, NULL), (NULL, 'Detroit Pizza', 'https://cdnimg.webstaurantstore.com/uploads/blog/2019/3/blog-types-pizza_in-blog-7.jpg', '$4.99', NULL, NULL),(NULL, 'New England Greek Style', 'https://www.tripsavvy.com/thmb/auY2hmSOtkrTpMhvQtn917Hz2mA=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Greek-style-pizza-greggman-56a30fc85f9b58b7d0d0377c.jpg', '$5.99', NULL, NULL),(NULL, 'Tomato Pie: New Jersey style', 'https://www.tripsavvy.com/thmb/r0zX4ULs067vi8_Z22XSdBGwVQU=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/TomatoPiePIzza-5c40ec3246e0fb000178f300.jpg', '$8.99', NULL, NULL);
+```
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Running the application
+
+1. Go to XAMPP Control and start Apache server and MySQL.
+2. From PhpStorm terminal Run `npm start dev`
+
+
+## Application url and port
+`http://pizza_app.test:3000/`
+
+
+
+
+
+
+
