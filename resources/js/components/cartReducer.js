@@ -24,7 +24,7 @@ const cartReducer = (state = initState, action) => {
     }
 
     if (action.type === GET_ALL_PIZZAS) {
-        return { ...state, items: action.payload}
+        return { ...state, items: action.payload, redirect: false}
     }
 
     if (action.type === OPEN_ADD_TO_CART_MODAL) {

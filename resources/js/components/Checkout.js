@@ -5,13 +5,12 @@ import {Redirect} from 'react-router-dom';
 
 class Checkout extends Component{
 
-
     submitData = (e) => {
         e.preventDefault();
         const name = this.getName.value;
         const contact = this.getContact.value;
         const address =  this.getAddress.value;
-        const amount = this.props.total;
+        const amount = (this.props.newTotal).toFixed(2);
         const data = {
             id: new Date(),
             name,
@@ -23,7 +22,11 @@ class Checkout extends Component{
     };
 
     render(){
+
         if(this.props.redirect === false) {
+
+            let total = (this.props.newTotal).toFixed(2);
+
             return (
                 <form onSubmit={this.submitData}>
                     <div className="container">
@@ -51,7 +54,7 @@ class Checkout extends Component{
                                 </label>
                             </ul>
                             <ul className="collection-item">
-                                <b>Total: {this.props.total} $</b>
+                                <b>Total: ${total}</b>
                             </ul>
                         </div>
                         <div className="checkout">
@@ -72,7 +75,7 @@ class Checkout extends Component{
 const mapStateToProps = (state)=>{
     return{
         addedItems: state.addedItems,
-        total: state.total,
+        newTotal: state.total,
         redirect: state.redirect
     }
 };

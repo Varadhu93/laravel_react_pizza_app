@@ -76212,11 +76212,12 @@ function (_Component) {
 /*!*****************************************!*\
   !*** ./resources/js/components/Cart.js ***!
   \*****************************************/
-/*! exports provided: default */
+/*! exports provided: Cart, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cart", function() { return Cart; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
@@ -76241,7 +76242,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -76427,7 +76427,9 @@ function (_Component) {
       var name = _this.getName.value;
       var contact = _this.getContact.value;
       var address = _this.getAddress.value;
-      var amount = _this.props.total;
+
+      var amount = _this.props.newTotal.toFixed(2);
+
       var data = {
         id: new Date(),
         name: name,
@@ -76448,6 +76450,7 @@ function (_Component) {
       var _this2 = this;
 
       if (this.props.redirect === false) {
+        var total = this.props.newTotal.toFixed(2);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.submitData
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76482,7 +76485,7 @@ function (_Component) {
           }
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "collection-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Total: ", this.props.total, " $"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Total: $", total))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "checkout"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "waves-effect waves-light btn",
@@ -76502,7 +76505,7 @@ function (_Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     addedItems: state.addedItems,
-    total: state.total,
+    newTotal: state.total,
     redirect: state.redirect
   };
 };
@@ -77064,7 +77067,8 @@ var cartReducer = function cartReducer() {
 
   if (action.type === _actions_action_types_cart_actions__WEBPACK_IMPORTED_MODULE_0__["GET_ALL_PIZZAS"]) {
     return _objectSpread({}, state, {
-      items: action.payload
+      items: action.payload,
+      redirect: false
     });
   }
 

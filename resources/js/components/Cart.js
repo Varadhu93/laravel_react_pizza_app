@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {removeItem, addQuantity, subtractQuantity} from './actions/cartActions'
 
-class Cart extends Component{
+export class Cart extends Component{
 
     //to remove the item completely
     handleRemove = (id) => {
