@@ -47,7 +47,7 @@ const cartReducer = (state = initState, action) => {
                 ...state,
                 //total: state.total + addedItem.price
                 addedItem,
-                total: state.total + value
+                total: state.total
 
             }
         } else {

@@ -77100,7 +77100,7 @@ var cartReducer = function cartReducer() {
       return _objectSpread({}, state, {
         //total: state.total + addedItem.price
         addedItem: addedItem,
-        total: state.total + value
+        total: state.total
       });
     } else {
       addedItem.quantity = 1; //calculating the total
