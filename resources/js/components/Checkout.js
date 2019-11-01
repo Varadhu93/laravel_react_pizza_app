@@ -10,7 +10,7 @@ class Checkout extends Component{
         const name = this.getName.value;
         const contact = this.getContact.value;
         const address =  this.getAddress.value;
-        const amount = (this.props.newTotal).toFixed(2);
+        const amount = (this.props.totalAmount).toFixed(2);
         const data = {
             id: new Date(),
             name,
@@ -25,7 +25,7 @@ class Checkout extends Component{
 
         if(this.props.redirect === false) {
 
-            let total = (this.props.newTotal).toFixed(2);
+            let total = (this.props.totalAmount).toFixed(2);
 
             return (
                 <form onSubmit={this.submitData}>
@@ -75,7 +75,7 @@ class Checkout extends Component{
 const mapStateToProps = (state)=>{
     return{
         addedItems: state.addedItems,
-        newTotal: state.total,
+        totalAmount: state.total,
         redirect: state.redirect
     }
 };

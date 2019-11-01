@@ -52,7 +52,7 @@ export class Cart extends Component{
                 <p>Nothing.</p>
             );
 
-        let total = (this.props.newTotal).toFixed(2);
+        let total = (this.props.totalAmount).toFixed(2);
 
         return(
             <div className="container">
@@ -75,7 +75,7 @@ export class Cart extends Component{
 const mapStateToProps = (state)=>{
     return{
         items: state.addedItems,
-        newTotal: state.total
+        totalAmount: state.total
     }
 };
 const mapDispatchToProps = (dispatch)=>{

@@ -76323,7 +76323,7 @@ function (_Component) {
           }
         }, "Remove")));
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Nothing.");
-      var total = this.props.newTotal.toFixed(2);
+      var total = this.props.totalAmount.toFixed(2);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76343,7 +76343,7 @@ function (_Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     items: state.addedItems,
-    newTotal: state.total
+    totalAmount: state.total
   };
 };
 
@@ -76428,7 +76428,7 @@ function (_Component) {
       var contact = _this.getContact.value;
       var address = _this.getAddress.value;
 
-      var amount = _this.props.newTotal.toFixed(2);
+      var amount = _this.props.totalAmount.toFixed(2);
 
       var data = {
         id: new Date(),
@@ -76450,7 +76450,7 @@ function (_Component) {
       var _this2 = this;
 
       if (this.props.redirect === false) {
-        var total = this.props.newTotal.toFixed(2);
+        var total = this.props.totalAmount.toFixed(2);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.submitData
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76505,7 +76505,7 @@ function (_Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     addedItems: state.addedItems,
-    newTotal: state.total,
+    totalAmount: state.total,
     redirect: state.redirect
   };
 };
@@ -77097,8 +77097,10 @@ var cartReducer = function cartReducer() {
 
     if (existed_item) {
       addedItem.quantity += 1;
+      console.log(addedItem.quantity);
       return _objectSpread({}, state, {
         //total: state.total + addedItem.price
+        addedItem: addedItem,
         total: state.total + value
       });
     } else {
