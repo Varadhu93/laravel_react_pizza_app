@@ -29,8 +29,8 @@ To create a Pizza application which allows Users to order pizza from list of giv
 
 ## Tables
 
-`Pizza` - id, pizza_name, image, price, timestamp
-`Orders` -order_id, name, contact, address, amount, timestamp
+* `Pizza` - id, pizza_name, image, price, timestamp
+* `Orders` -order_id, name, contact, address, amount, timestamp
 
 ## Sample Test data
 
