@@ -18,6 +18,7 @@ class Navbar extends Component {
                     <ul className="right">
                         <li><Link to="/">Pizza Shop</Link></li>
                         <li><Link to="/cart">My cart</Link></li>
+                        <li><Link to="/orders">My orders</Link></li>
                         <li><Link to="/checkout"><i className="material-icons">shopping_cart</i></Link></li>
                     </ul>
                 </div>

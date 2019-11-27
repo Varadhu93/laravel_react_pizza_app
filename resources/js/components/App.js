@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import Cart from './Cart';
 import Checkout from "./Checkout";
+import Orders from "./Orders";
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={Home}/>
                         <Route path="/cart" component={Cart}/>
+                        <Route path="/orders" component={Orders}/>
                         <Route path="/checkout" component={Checkout}/>
                     </Switch>
                 </div>

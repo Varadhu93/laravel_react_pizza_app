@@ -2,7 +2,7 @@
 
 Route::get('/home', 'PizzaController@index');
 Route::resource('order', 'OrderController');
-
+Route::get('/orders', 'OrderController@index');
 
 /*Route::get('/pizza/{id}', 'PizzaController@show');
 Route::post('/order', 'PizzaController@store');

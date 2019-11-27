@@ -6,7 +6,8 @@ import {
     GET_ALL_PIZZAS,
     OPEN_ADD_TO_CART_MODAL,
     CLOSE_ADD_TO_CART_MODAL,
-    ADD_SHIPPING
+    ADD_SHIPPING,
+    GET_ORDERS
 } from './actions/action-types/cart-actions'
 
 const initState = {
@@ -15,7 +16,8 @@ const initState = {
     total: 0,
     addToCartModalIsShowing: false,
     shipping: [],
-    redirect: false
+    redirect: false,
+    orders: []
 };
 const cartReducer = (state = initState, action) => {
 
@@ -35,25 +37,27 @@ const cartReducer = (state = initState, action) => {
         return { ...state, addToCartModalIsShowing: false}
     }
 
+    if (action.type === GET_ORDERS) {
+        return { ...state, orders: action.payload, redirect: false}
+    }
+
     //INSIDE HOME COMPONENT
     if (action.type === ADD_TO_CART) {
         let addedItem = state.items.find(item => item.id === action.id);
         //check if the action id exists in the addedItems
         let existed_item = state.addedItems.find(item => action.id === item.id);
-        let value = parseFloat(addedItem.price.replace("$", ""));
-        if (existed_item) {
+        let value = parseFloat(addedItem.price.replace("$", ""));      
+        if (existed_item) {         
             addedItem.quantity += 1;
+            let newTotal = state.total + value;
             return {
-                ...state,
-                //total: state.total + addedItem.price
-                addedItem,
-                total: state.total
-
+                ...state,              
+                addedItems: [addedItem],
+                total: newTotal              
             }
-        } else {
+        } else {           
             addedItem.quantity = 1;
-            //calculating the total
-            //let newTotal = state.total + addedItem.price
+            //calculating the total         
             let newTotal = state.total + value;
             return {
                 ...state,
@@ -65,10 +69,12 @@ const cartReducer = (state = initState, action) => {
     if (action.type === REMOVE_ITEM) {
         let itemToRemove = state.addedItems.find(item => action.id === item.id);
         let new_items = state.addedItems.filter(item => action.id !== item.id);
-        let value = parseFloat(itemToRemove.price.replace("$", ""));
+        let value = parseFloat(itemToRemove.price.replace("$", "")); // REMOVED ITEM VALUE
         //calculating the total
         //let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
         let newTotal = state.total - (value.toFixed(2) * itemToRemove.quantity);
+        // calculateTotal every time you add or remove item 
+
 
         return {
             ...state,
@@ -115,4 +121,14 @@ const cartReducer = (state = initState, action) => {
     return state
 };
 
+const getTotal = (listOfItems) =>{
+
+    let total = 0;
+
+    for (let i = 0; i < listOfItems.length; i++) {
+        total = total + listOfItems[i].price * listOfItems[i].quantity;
+    }
+
+    return total; 
+}
 export default cartReducer

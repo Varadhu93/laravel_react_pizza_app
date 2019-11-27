@@ -3,13 +3,18 @@ import {
     REMOVE_ITEM,
     SUB_QUANTITY,
     ADD_QUANTITY,
-    ADD_SHIPPING,
     GET_ALL_PIZZAS,
     OPEN_ADD_TO_CART_MODAL,
     CLOSE_ADD_TO_CART_MODAL,
+    GET_ORDERS
 } from './action-types/cart-actions'
 import axios from "axios";
 import React from "react";
+
+export const getOrder = () => async dispatch => {
+   const response = await axios.get('/orders');
+   dispatch({type: GET_ORDERS, payload: response.data})
+};
 
 export const getAllPizzas = () => async dispatch => {
     const response = await axios.get('/home');
@@ -71,3 +76,4 @@ export const closeAddToCartModal= () =>{
         type: CLOSE_ADD_TO_CART_MODAL
     }
 };
+
