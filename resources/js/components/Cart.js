@@ -20,6 +20,12 @@ export class Cart extends Component{
         }
     };
 
+    //proceed to checkout
+    proccedToCheckout = (total) => {
+        if(total > 0){
+            this.props.history.push('/checkout');
+        }
+    }
     render(){
 
         let addedItems = this.props.items.length ?
@@ -65,7 +71,8 @@ export class Cart extends Component{
                         <b>Total: ${total} </b>
                     </p>
                     <p>
-                        <Link to="/checkOut" className="btn btn-primary">Proceed to Checkout</Link>
+                        {/* <Link to="/checkOut" className="btn btn-primary">Proceed to Checkout</Link> */}
+                        <button className="btn btn-primary" onClick={()=>{this.proccedToCheckout(total)}}>Proceed to Checkout</button>
                     </p>
                 </div>
             </div>

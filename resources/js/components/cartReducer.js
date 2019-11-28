@@ -22,7 +22,12 @@ const initState = {
 const cartReducer = (state = initState, action) => {
 
     if (action.type === ADD_SHIPPING) {
-        return { ...state, shipping: action.payload, redirect: true}
+        return { ...state,
+            //addedItems: [],
+            //total: 0,
+            shipping: action.payload,
+            redirect: true
+        }
     }
 
     if (action.type === GET_ALL_PIZZAS) {
@@ -38,97 +43,94 @@ const cartReducer = (state = initState, action) => {
     }
 
     if (action.type === GET_ORDERS) {
-        return { ...state, orders: action.payload, redirect: false}
+        return { ...state, addedItems: [], total: 0, orders: action.payload, redirect: false}
     }
 
     //INSIDE HOME COMPONENT
     if (action.type === ADD_TO_CART) {
-        let addedItem = state.items.find(item => item.id === action.id);
-        //check if the action id exists in the addedItems
-        let existed_item = state.addedItems.find(item => action.id === item.id);
-        let value = parseFloat(addedItem.price.replace("$", ""));      
-        if (existed_item) {         
-            addedItem.quantity += 1;
-            let newTotal = state.total + value;
-            return {
-                ...state,              
-                addedItems: [addedItem],
-                total: newTotal              
-            }
-        } else {           
-            addedItem.quantity = 1;
-            //calculating the total         
-            let newTotal = state.total + value;
-            return {
-                ...state,
-                addedItems: [...state.addedItems, addedItem],
-                total: newTotal
-            }
+        let existedItem = state.addedItems.find(item => action.id === item.id);
+        let isExist = false;
+        let addedItem = {};
+        if (existedItem) {
+            isExist = true;
+            addedItem = existedItem;
+        } else {
+            isExist = false;
+            addedItem = state.items.find(item => item.id === action.id);
         }
-    }
-    if (action.type === REMOVE_ITEM) {
-        let itemToRemove = state.addedItems.find(item => action.id === item.id);
-        let new_items = state.addedItems.filter(item => action.id !== item.id);
-        let value = parseFloat(itemToRemove.price.replace("$", "")); // REMOVED ITEM VALUE
-        //calculating the total
-        //let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
-        let newTotal = state.total - (value.toFixed(2) * itemToRemove.quantity);
-        // calculateTotal every time you add or remove item 
 
-
+        let addedItems = updateAddedItems(state.addedItems, addedItem, isExist);
         return {
             ...state,
-            addedItems: new_items,
-            total: newTotal
+            addedItems: addedItems,
+            total: getTotal(addedItems)
+        };
+
+    }
+    if (action.type === REMOVE_ITEM) {
+        let afterRemoveAddedItems = state.addedItems.filter(item => action.id !== item.id);
+        return {
+            ...state,
+            addedItems: afterRemoveAddedItems,
+            total: getTotal(afterRemoveAddedItems)
         }
     }
     //INSIDE CART COMPONENT
     if (action.type === ADD_QUANTITY) {
         let addedItem = state.items.find(item => item.id === action.id);
-        let value = parseFloat(addedItem.price.replace("$", ""));
-        addedItem.quantity += 1;
-       // let newTotal = state.total + addedItem.price
-        let newTotal = state.total + value;
+        let addedItems = updateAddedItems(state.addedItems, addedItem, true);
         return {
             ...state,
-            total: newTotal
+            addedItems: addedItems,
+            total: getTotal(addedItems)
         }
     }
-    if (action.type === SUB_QUANTITY) {
-        let addedItem = state.items.find(item => item.id === action.id);
-        let value = parseFloat(addedItem.price.replace("$", ""));
-        //if the qt == 0 then it should be removed
-        if (addedItem.quantity === 1) {
-            let new_items = state.addedItems.filter(item => item.id !== action.id);
-            //let newTotal = state.total - addedItem.price
-            let newTotal = state.total - value;
-            return {
-                ...state,
-                addedItems: new_items,
-                total: newTotal
-            }
-        } else {
-            addedItem.quantity -= 1;
-            //let newTotal = state.total - addedItem.price
-            let newTotal = state.total - value;
-            return {
-                ...state,
-                total: newTotal
-            }
-        }
 
+    if (action.type === SUB_QUANTITY) {
+        let subItem = state.addedItems.find(item => item.id === action.id);
+        let addedItems = [];
+        if (subItem.quantity <= 1) {
+            return { ...state };
+        } else {
+            addedItems = state.addedItems.map(item => {
+                if (subItem.id === item.id) {
+                    item.quantity--;
+                }
+                return item;
+            });
+        }
+        return {
+            ...state,
+            addedItems: addedItems,
+            total: getTotal(addedItems)
+        };
     }
     return state
 };
 
-const getTotal = (listOfItems) =>{
-
+const getTotal = (listOfItems) => {
     let total = 0;
-
     for (let i = 0; i < listOfItems.length; i++) {
-        total = total + listOfItems[i].price * listOfItems[i].quantity;
+        total = total + parseFloat(listOfItems[i].price.replace("$", "")) * listOfItems[i].quantity;
+    }
+    return total;
+};
+
+const updateAddedItems = (addedItems, addedItem, isExist) => {
+    if (isExist) {
+        addedItem.quantity = addedItem.quantity + 1;
+        for(let i = 0; i < addedItems.length; i++) {
+            if (addedItems[i].id === addedItem.id) {
+                addedItems[i] = addedItem;
+            }
+        }
+    } else {
+        addedItem.quantity = 1;
+        addedItems.push(addedItem);
     }
 
-    return total; 
+    return addedItems;
 }
+
+
 export default cartReducer

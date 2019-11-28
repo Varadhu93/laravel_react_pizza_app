@@ -2,25 +2,15 @@ import React, { Component } from 'react';
 import {getOrder} from './actions/cartActions'
 import {connect} from "react-redux";
 
-
 class Orders extends Component{
 
     componentDidMount = () => {
-        this.props.getOrder();
+        let {email} = this.props.match.params;        
+        this.props.getOrder(email);
     };
 
     render() {
-        // let orderList = this.props.orders.map(order=>{
-        //     return(       
-        //         <div>
-        //             <div>{order.order_id}</div>
-        //             <div>{order.name}</div>
-        //             <div>{order.contact}</div>
-        //             <div>{order.amount}</div>
-        //          </div>             
-        //     )
-        // });
-
+   
         return(
             <div className="container">
                 <h3 className="center">Orders</h3>
@@ -30,7 +20,9 @@ class Orders extends Component{
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Contact</th>
+                                <th scope="col">Ordered Items</th>
                                 <th scope="col">Amount</th>
                             </tr>
                         </thead>   
@@ -38,11 +30,13 @@ class Orders extends Component{
                             {
                                 this.props.orders.map(order => {                                                  
                                     return (
-                                        <tr>
+                                        <tr key={order.order_id}>
                                             <td>{order.order_id}</td>
                                             <td>{order.name}</td>
+                                            <td>{order.email}</td>
                                             <td>{order.contact}</td>
-                                            <td>{order.amount}</td>
+                                            <td>{order.pizzas}</td>
+                                            <td>${order.amount}</td>
                                         </tr>
                                     )
                                 })
@@ -63,7 +57,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>{
 
     return{      
-        getOrder: () => {dispatch(getOrder())},    
+        getOrder: (email) => {dispatch(getOrder(email))},    
     }
 };
 

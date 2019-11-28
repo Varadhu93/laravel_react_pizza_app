@@ -3,6 +3,7 @@
 Route::get('/home', 'PizzaController@index');
 Route::resource('order', 'OrderController');
 Route::get('/orders', 'OrderController@index');
+//Route::get('/orders/{email}', 'OrderController@show');
 
 /*Route::get('/pizza/{id}', 'PizzaController@show');
 Route::post('/order', 'PizzaController@store');

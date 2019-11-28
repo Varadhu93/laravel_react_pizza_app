@@ -35,8 +35,10 @@
         "react-bootstrap": "^1.0.0-beta.14",
         "react-native": "^0.61.2",
         "react-redux": "^7.1.1",
+        "react-validation": "^3.0.7",
         "reactstrap": "^8.1.1",
         "redux": "^4.0.4",
-        "redux-thunk": "^2.3.0"
+        "redux-thunk": "^2.3.0",
+        "validator": "^12.1.0"
     }
 }

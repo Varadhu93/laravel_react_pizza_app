@@ -17,8 +17,10 @@ class CreateOrdersTable extends Migration
 
             $table->increments('order_id')->unsigned();
             $table->string('name');
+            $table->string('email');
             $table->string('contact');
             $table->string('address');
+            $table->string('pizzas');
             $table->string('amount');
             $table->timestamps();
         });

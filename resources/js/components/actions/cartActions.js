@@ -6,13 +6,13 @@ import {
     GET_ALL_PIZZAS,
     OPEN_ADD_TO_CART_MODAL,
     CLOSE_ADD_TO_CART_MODAL,
+    ADD_SHIPPING,
     GET_ORDERS
 } from './action-types/cart-actions'
 import axios from "axios";
-import React from "react";
 
-export const getOrder = () => async dispatch => {
-   const response = await axios.get('/orders');
+export const getOrder = (email) => async dispatch => {
+   const response = await axios.get('/orders/?email=' +email);
    dispatch({type: GET_ORDERS, payload: response.data})
 };
 
@@ -21,19 +21,22 @@ export const getAllPizzas = () => async dispatch => {
     dispatch({type: GET_ALL_PIZZAS, payload: response.data})
 };
 
-export const addShipping = (data) =>
+export const addShipping = (data) => async dispatch => {
 
-    axios.post('/order', {
+    await axios.post('/order', {
         name: data.name,
+        email: data.email,
         contact: data.contact,
         address: data.address,
+        pizzas: data.pizzas,
         amount: data.amount
     }).then(response =>{
-        console.log(response);
+        console.log('');
     }).catch(error =>{
         console.log(error);
     });
-
+    dispatch({type: ADD_SHIPPING})
+}
 
 //add cart action
 export const addToCart = (id) =>{

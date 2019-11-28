@@ -12,9 +12,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Orders::all();
+        $email = $request->input('email');
+        return Orders::where('email', $email)->get();     
     }
 
     /**
@@ -37,15 +38,19 @@ class OrderController extends Controller
     {
          $request->validate([
             'name'=>'required',
+            'email'=>'required',
             'contact'=>'required',
             'address'=>'required',
+            'pizzas'=>'required',
             'amount'=>'required'
         ]);
 
         $order = new Orders([
             'name' => $request->input('name'),
+            'email' => $request->input('email'),
             'contact' => $request->input('contact'),
             'address' => $request->input('address'),
+            'pizzas' => $request->input('pizzas'),
             'amount' => $request->input('amount')
         ]);
         $order->save();
@@ -63,7 +68,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        // $order = Order::find($id);
+        // return $order->toJson();
+        
     }
 
     /**
