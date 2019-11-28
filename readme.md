@@ -45,7 +45,7 @@ INSERT INTO `pizza` (`id`, `pizza_name`, `image`, `price`, `created_at`, `update
 
 
 ## Application url and port
-`http://pizza_app.test:3000/`
+`http://18.140.224.102/`
 
 
 
